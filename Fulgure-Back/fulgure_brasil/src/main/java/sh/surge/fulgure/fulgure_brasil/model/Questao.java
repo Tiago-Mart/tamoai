@@ -1,62 +1,46 @@
 package sh.surge.fulgure.fulgure_brasil.model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 
-import sh.surge.fulgure.fulgure_brasil.repository.QuestaoRepository;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Questao {
-
-    private static int idCounter = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String comando, curiosidade, dica, resposta;
-    private int id, tempo, pontuacao;
-    private ArrayList<String> alternativas;
+    private int tempo, pontuacao;
 
     public Questao() {
-        this.id = ++Questao.idCounter;
     }
 
     public Questao(String comando, String curiosidade, String dica, String resposta, int tempo, int pontuacao) {
-        this.id = ++Questao.idCounter;
         this.comando = comando;
         this.curiosidade = curiosidade;
         this.dica = dica;
         this.resposta = resposta;
         this.tempo = tempo;
         this.pontuacao = pontuacao;
-        this.alternativas = new ArrayList<>();
     }
 
-    public void cadastraAlternativa(int id, String alternativa1, String alternativa2, String alternativa3,
-            String alternativa4, String alternativa5) {
-        Questao questaoRecebida = QuestaoRepository.getById(id);
-        questaoRecebida.alternativas.add(alternativa1);
-        questaoRecebida.alternativas.add(alternativa2);
-        questaoRecebida.alternativas.add(alternativa3);
-        questaoRecebida.alternativas.add(alternativa4);
-        questaoRecebida.alternativas.add(alternativa5);
-    }
-
-    public String exibeAlternativas() {
-        Iterator it = this.alternativas.iterator();
-        String alternativa = null;
-        while (it.hasNext()) {
-            alternativa = (String) it.next();
-        }
-        return alternativa;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public ArrayList<String> getAlternativas() {
-        return alternativas;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setAlternativas(ArrayList<String> alternativas) {
-        this.alternativas = alternativas;
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
     }
 
     public String getComando() {

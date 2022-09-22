@@ -1,7 +1,9 @@
 package sh.surge.fulgure.fulgure_brasil.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,25 +18,26 @@ import sh.surge.fulgure.fulgure_brasil.repository.UsuarioRepository;
 @CrossOrigin
 @RestController
 public class UsuarioController {
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @GetMapping("/usuario")
-    public List<Usuario> listaUsuarios() {
-        return UsuarioRepository.all();
+    public List<Usuario> recuperaQuestoes() {
+        return (List<Usuario>) usuarioRepository.findAll();
     }
 
     @GetMapping("/usuario/{id}")
-    public Usuario RecuperaUsuarioPeloId(@PathVariable("id") int id) {
-        return UsuarioRepository.getById(id);
+    public Optional<Usuario> RecuperaUsuarioPeloId(@PathVariable("id") Long id) {
+        return usuarioRepository.findById(id);
     }
 
-    @PostMapping("/usuario") 
-    public void addUsuario(@RequestBody Usuario usuario){
-        UsuarioRepository.add(usuario);
-    }
-    @DeleteMapping("/usuario/{id}") 
-    public boolean deleteUsuario(@PathVariable("id") int id){
-        UsuarioRepository.deleteById(id);
-        return true;
+    @PostMapping("/usuario")
+    public void adicionaUsuario(@RequestBody Usuario novoUsuario) {
+        usuarioRepository.save(novoUsuario);
     }
 
+    @DeleteMapping("/Usuario/{id}")
+    public void deletaUsuario(@PathVariable("id") Long id) {
+        usuarioRepository.deleteById(id);
+    }
 }
