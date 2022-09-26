@@ -36,7 +36,7 @@ public class UsuarioController {
         usuarioRepository.save(novoUsuario);
     }
 
-    @DeleteMapping("/Usuario/{id}")
+    @DeleteMapping("/usuario/{id}")
     public void deletaUsuario(@PathVariable("id") Long id) {
         usuarioRepository.deleteById(id);
     }

@@ -1,9 +1,16 @@
 package sh.surge.fulgure.fulgure_brasil.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Usuario {
@@ -11,18 +18,23 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int vidas, pontuacao;
+    private int vidas;
     private String nome, email, senha;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_usuario")
+    @JsonManagedReference
+    private List<Sugestao> sugestoes;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, String senha) {
-        this.vidas = 0;
-        this.pontuacao = 0;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+    public List<Sugestao> getSugestoes() {
+        return sugestoes;
+    }
+
+    public void setSugestoes(List<Sugestao> sugestoes) {
+        this.sugestoes = sugestoes;
     }
 
     public void setId(Long id) {
@@ -39,14 +51,6 @@ public class Usuario {
 
     public void setVidas(int vidas) {
         this.vidas = vidas;
-    }
-
-    public int getPontuacao() {
-        return pontuacao;
-    }
-
-    public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao;
     }
 
     public String getNome() {

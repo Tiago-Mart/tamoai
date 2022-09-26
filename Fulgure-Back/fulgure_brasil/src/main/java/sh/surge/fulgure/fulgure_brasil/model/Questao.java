@@ -1,10 +1,18 @@
 package sh.surge.fulgure.fulgure_brasil.model;
 
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Questao {
@@ -15,16 +23,33 @@ public class Questao {
     private String comando, curiosidade, dica, resposta;
     private int tempo, pontuacao;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_alternativas") // tabela submissa
+    @JsonManagedReference
+    private Alternativas alternativas;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "associacao_questao_areaConhecimento", joinColumns = @JoinColumn(name = "fk_questao"), inverseJoinColumns = @JoinColumn(name = "fk_areaConhecimento"))
+    @JsonManagedReference
+    private List<AreaConhecimento> areaConhecimento;
+
     public Questao() {
     }
 
-    public Questao(String comando, String curiosidade, String dica, String resposta, int tempo, int pontuacao) {
-        this.comando = comando;
-        this.curiosidade = curiosidade;
-        this.dica = dica;
-        this.resposta = resposta;
-        this.tempo = tempo;
-        this.pontuacao = pontuacao;
+    public List<AreaConhecimento> getAreaConhecimento() {
+        return areaConhecimento;
+    }
+
+    public void setAreaConhecimento(List<AreaConhecimento> areaConhecimento) {
+        this.areaConhecimento = areaConhecimento;
+    }
+
+    public Alternativas getAlternativas() {
+        return alternativas;
+    }
+
+    public void setAlternativas(Alternativas alternativas) {
+        this.alternativas = alternativas;
     }
 
     public Long getId() {
