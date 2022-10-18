@@ -1,98 +1,58 @@
 <template>
   <div>
-    <barraNav class="nav"></barraNav>
-    <b-container>
-      <menuHamburguer class="menu"></menuHamburguer>
+    <head>
+      <!-- Latest compiled and minified CSS -->
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      />
 
-      <div class="jogar">
-        <h1>Fulgure, Brasil</h1>
-        <iniciarJogo v-bind:questaoId="0" class="componente"></iniciarJogo>
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <barraNav class="nav"></barraNav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Fulgure, Brasil!</h1>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </p>
+        <p>
+          <a class="btn btn-primary btn-lg" href="#" role="button"
+            >Learn more</a
+          >
+        </p>
       </div>
+    </div>
+
+    <b-container>
+      <itemRow :nivel="'Fácil'" :descricao="'lorem ipsum'" :imagem="'https://img.freepik.com/vetores-premium/piano_81698-1779.jpg?w=2000'" :imagem2="''" :imagem3="''" :rota="''"></itemRow>
+      <itemRow :nivel="'Médio'" :descricao="'lorem ipsum 1'" :imagem="'https://img.freepik.com/vetores-premium/piano_81698-1779.jpg?w=2000'" :imagem2="''" :imagem3="''" :rota="''"></itemRow>
+      <itemRow :nivel="'Difícil'" :descricao="'lorem ipsum 3'" :imagem="'https://img.freepik.com/vetores-premium/piano_81698-1779.jpg?w=2000'" :imagem2="''" :imagem3="''" :rota="''"></itemRow>
     </b-container>
-    <img src="~/static/main.png" class="fundo" />
   </div>
 </template>
 
 <script>
-import menuHamburguer from '~/components/menuHamburguer.vue'
 import barraNav from '~/components/barraNav.vue'
-import iniciarJogo from '~/components/iniciarJogo.vue'
+import itemRow from '~/components/itemRow.vue'
 export default {
-  components: { iniciarJogo, menuHamburguer, barraNav },
+  components: { barraNav, itemRow },
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
-body {
-  background-image: url("../static/main2.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.jogar {
-  width: 50%;
-  height: 100%;
-  float: right;
-  display: grid;
-  place-items: center;
-}
-
-.jogar h1 {
-  text-align: center;
-  font-size: 90px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: bolder;
-  margin-top: 15%;
-  margin-bottom: 10%;
-}
-
-.fundo {
-  display: none;
-}
-
-.menu {
-  display: none;
-}
-
-@media only screen and (max-device-width: 1000px) {
-  body {
-    background-image: none !important;
-  }
-
-  .fundo {
-    display: block;
-    width: 100% !important;
-  }
-
-  .jogar {
-    width: 100%;
-    padding-bottom: 40px;
-    font-size: 60px;
-  }
-
-  .jogar h1 {
-    margin-top: 10%;
-  }
-
-  .menu {
-    display: block;
-  }
-
-  .nav {
-    display: none;
-  }
-}
-
-@media only screen and (min-device-width: 1800px) {
-  .jogar h1 {
-    font-size: 120px;
-  }
-
-  .jogar {
-    width: 100%;
-    transform: translateX(35%);
-  }
-
-}
 </style>

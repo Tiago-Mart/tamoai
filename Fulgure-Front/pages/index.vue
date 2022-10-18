@@ -84,7 +84,7 @@ export default {
         email: this.form.email,
         senha: this.form.senha,
       })
-      this.$router.push('/tela-usuario')
+      this.$router.push('/tela-jogar')
     },
   },
 }
