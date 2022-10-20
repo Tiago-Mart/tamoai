@@ -3,14 +3,16 @@
     <b-row>
       <b-col class="left">
         <b-card>
-          <h3>Cadastrar</h3>
+          <img src="~/static/login.jpg" width="100%" height="100%"/>
+        </b-card>
+      </b-col>
+      <b-col class="right">
+        <b-card>
+          <h3>Entrar</h3>
           <p class="label instrucao">
-            Insira os seus dados para realizar o cadastro.
+            Insira os seus dados para realizar o login.
           </p>
           <b-form @submit="onSubmit" @reset="onReset">
-            <p class="label">Nome</p>
-            <b-form-input class="nome input" type="text" placeholder="Seu nome" v-model="form.nome" required>
-            </b-form-input>
             <p class="label">Email</p>
             <b-form-input class="email input" type="email" placeholder="example@mail.com" v-model="form.email" required>
             </b-form-input>
@@ -18,14 +20,8 @@
             <b-form-input class="senha input" type="password" placeholder="••••••••••••••••••" v-model="form.senha"
               required>
             </b-form-input>
-            <b-form-checkbox class="check">Eu li e concordo com os <span>termos de uso</span>.</b-form-checkbox>
-            <b-button class="enviar" type="submit" v-on:click="criaCadastro">Enviar</b-button>
+            <b-button class="enviar" type="submit" v-on:click="criaLogin">Enviar</b-button>
           </b-form>
-        </b-card>
-      </b-col>
-      <b-col class="right"> 
-        <b-card>
-          <img src="~/static/cadastro.jpg" width="100%" height="100%"/>
         </b-card>
       </b-col>
     </b-row>
@@ -42,7 +38,6 @@ export default {
   data() {
     return {
       form: {
-        nome: '',
         email: '',
         senha: '',
       },
@@ -64,7 +59,7 @@ export default {
         this.show = true
       })
     },
-    criaCadastro() {
+    criaLogin() {
       this.$axios.post('/usuario', {
         nome: this.form.nome,
         email: this.form.email,
@@ -143,8 +138,8 @@ h3 {
   body{
     background-color: white;
   }
-  .right{
-    display: none;
+  .left{
+    display: none !important;
   }
   .card {
     border: none;
