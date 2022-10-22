@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sh.surge.fulgure.fulgure_brasil.model.Questao;
 import sh.surge.fulgure.fulgure_brasil.repository.QuestaoRepository;
 
+//ACESSAR https://www.guj.com.br/t/query-no-spring-boot-com-jpa-passando-paramentro-no-controller/404718/2
 @CrossOrigin
 @RestController
 public class QuestaoController {

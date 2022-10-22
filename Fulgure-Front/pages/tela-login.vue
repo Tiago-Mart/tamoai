@@ -3,7 +3,7 @@
     <b-row>
       <b-col class="left">
         <b-card>
-          <img src="~/static/login.jpg" width="100%" height="100%"/>
+          <img src="~/static/login.jpg" width="100%" height="100%" />
         </b-card>
       </b-col>
       <b-col class="right">
@@ -20,7 +20,7 @@
             <b-form-input class="senha input" type="password" placeholder="••••••••••••••••••" v-model="form.senha"
               required>
             </b-form-input>
-            <b-button class="enviar" type="submit" v-on:click="criaLogin">Enviar</b-button>
+            <b-button class="enviar-login" type="submit" v-on:click="criaLogin">Enviar</b-button>
           </b-form>
         </b-card>
       </b-col>
@@ -74,7 +74,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
 body {
-  background-color:beige;
+  background-color: #fafab6;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: black;
@@ -85,13 +85,13 @@ h3 {
 }
 
 .input,
-.enviar,
+.enviar-login,
 h3 {
   margin-top: 24px;
   margin-bottom: 24px;
 }
 
-.enviar {
+.enviar-login {
   height: 44px;
   font-weight: bold;
   width: 100%;
@@ -104,7 +104,7 @@ h3 {
   margin-top: 12px;
 }
 
-.enviar:hover {
+.enviar-login:hover {
   background-color: rgba(0, 0, 0, 87%);
 }
 
@@ -124,23 +124,26 @@ h3 {
   margin-bottom: 56px;
 }
 
-.row{
+.row {
   margin: 2%;
   margin-bottom: 4%;
   height: 100%;
 }
-.card{
+
+.card {
   height: 100%;
   border: none;
 }
 
 @media only screen and (max-device-width: 700px) {
-  body{
+  body {
     background-color: white;
   }
-  .left{
+
+  .left {
     display: none !important;
   }
+
   .card {
     border: none;
     width: 100%;

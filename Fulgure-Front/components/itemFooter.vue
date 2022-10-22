@@ -36,25 +36,18 @@
 .footer{
   margin-top: 20px;
 }
-.mensagem{
-  margin-left: 100px;
-}
-.images{
-  margin-right: 100px;
-}
 .social {
   width: 24px;
   height: 24px;
 }
-.me-4,
-.text-reset {
+.me-4 {
   margin-right: 15px;
-}
-.text-reset {
-  margin: 0;
 }
 .bottom{
   background-color: transparent;
+}
+.fw-bold{
+  text-align: center;
 }
 #b-footer{
   width: 100%;
@@ -64,11 +57,6 @@
   #b-footer{
     position: relative;
     bottom: 0;
-  }
-}
-@media only screen and (max-device-width: 990px){
-  .images{
-    margin:0;
   }
 }
 

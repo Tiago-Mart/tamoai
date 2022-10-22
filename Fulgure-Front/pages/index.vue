@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <b-col class="left">
-        <b-card>
+        <b-card class="card-index">
           <h3>Cadastrar</h3>
           <p class="label instrucao">
             Insira os seus dados para realizar o cadastro.
@@ -19,13 +19,13 @@
               required>
             </b-form-input>
             <b-form-checkbox class="check">Eu li e concordo com os <span>termos de uso</span>.</b-form-checkbox>
-            <b-button class="enviar" type="submit" v-on:click="criaCadastro">Enviar</b-button>
+            <b-button class="enviar-cadastro" type="submit" v-on:click="criaCadastro">Enviar</b-button>
           </b-form>
         </b-card>
       </b-col>
-      <b-col class="right"> 
-        <b-card>
-          <img src="~/static/cadastro.jpg" width="100%" height="100%"/>
+      <b-col class="right">
+        <b-card class="card-index">
+          <img src="~/static/cadastro.jpg" width="100%" height="100%" />
         </b-card>
       </b-col>
     </b-row>
@@ -79,7 +79,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
 body {
-  background-color: rgb(255, 240, 212);
+  background-color: #fafab6;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: black;
@@ -90,13 +90,13 @@ h3 {
 }
 
 .input,
-.enviar,
+.enviar-cadastro,
 h3 {
   margin-top: 24px;
   margin-bottom: 24px;
 }
 
-.enviar {
+.enviar-cadastro {
   height: 44px;
   font-weight: bold;
   width: 100%;
@@ -109,7 +109,7 @@ h3 {
   margin-top: 12px;
 }
 
-.enviar:hover {
+.enviar-cadastro:hover {
   background-color: rgba(0, 0, 0, 87%);
 }
 
@@ -129,24 +129,27 @@ h3 {
   margin-bottom: 56px;
 }
 
-.row{
+.row {
   margin: 2%;
   margin-bottom: 4%;
   height: 100%;
 }
-.card{
+
+.card-index {
   height: 100%;
   border: none;
 }
 
 @media only screen and (max-device-width: 700px) {
-  body{
-    background-color: white;
+  body {
+    background-color: white !important;
   }
-  .right{
+
+  .right {
     display: none;
   }
-  .card {
+
+  .card-index {
     border: none;
     width: 100%;
     height: 100%;

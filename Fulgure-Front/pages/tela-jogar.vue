@@ -6,7 +6,7 @@
         <b-col>
           <b-jumbotron>
             <h1>Fulgure, Brasil!</h1>
-            <p class="justify">Lorem Ipsum is simply dummy text of the printing and typesetting
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text ever
               since the 1500s, when an unknown printer took a galley of type and
               scrambled it to make a type specimen book. It has survived not only
@@ -19,26 +19,25 @@
           </b-jumbotron>
         </b-col>
         <b-col>
-          <b-card title="Fácil" class="dificuldade mb-2">
-            <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </b-card-text>
-
-            <b-button href="#" variant="primary" v-on:click="rotaFacil">Jogar</b-button>
-          </b-card>
-          <b-card title="Médio" class="dificuldade mb-2">
+          <b-card title="Fácil" class="facil mb-2">
             <b-card-text>
               Some quick example text to build on the card title and make up the bulk of the card's content.
             </b-card-text>
 
-            <b-button href="#" variant="primary" v-on:click="rotaMedio">Jogar</b-button>
+            <b-button href="#" v-on:click="rotaFacil" class="bttn">Jogar</b-button>
           </b-card>
-          <b-card title="Difícil" class="dificuldade mb-2">
+          <b-card title="Médio" class="medio mb-2">
             <b-card-text>
               Some quick example text to build on the card title and make up the bulk of the card's content.
             </b-card-text>
-            <b-button href="#" variant="primary" v-on:click="rotaDificil">Jogar</b-button>
+
+            <b-button href="#" v-on:click="rotaMedio" class="bttn">Jogar</b-button>
+          </b-card>
+          <b-card title="Difícil" class="dificil mb-2">
+            <b-card-text>
+              Some quick example text to build on the card title and make up the bulk of the card's content.
+            </b-card-text>
+            <b-button href="#" v-on:click="rotaDificil" class="bttn">Jogar</b-button>
           </b-card>
         </b-col>
       </b-row>
@@ -55,13 +54,13 @@ import itemFooter from '~/components/itemFooter.vue'
 export default {
   components: { itemNav, itemFooter, itemCarrossel },
   methods: {
-    rotaFacil(){
+    rotaFacil() {
       this.$router.push('/questao/facil')
     },
-    rotaMedio(){
+    rotaMedio() {
       this.$router.push('/questao/medio')
     },
-    rotaDificil(){
+    rotaDificil() {
       this.$router.push('/questao/dificil')
     }
   }
@@ -72,51 +71,67 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
-body{
+* {
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+body {
   background-color: white !important;
 }
 
-.dificuldade{
-  border: 0.5px rgb(151, 205, 151) solid;
+.card {
   border-radius: 5px;
+  border-color: transparent;
 }
 
-.jumbotron, .col{
+.jumbotron,
+.col {
   margin: 0;
 }
 
-.card-body{
-  text-align: justify;
-}
-
-.col{
+.col {
   margin-top: 20px;
 }
 
-.jumbotron{
-  background-color: rgb(255, 244, 226);
+.jumbotron {
+  background-color: #ffff;
   padding: 40px;
-  border: solid 1px  #efefef;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
 }
 
-* {
-  box-sizing: border-box;
+.facil {
+  background-color: #4ec96fe3;
 }
 
-.justify {
-  text-align: justify;
+.medio {
+  background-color: #fcfd96;
 }
 
-@media only screen and (max-device-width: 900px){
-  .row{
+.dificil {
+  background-color: #6bbef9;
+}
+
+.bttn {
+  background-color: white;
+  border-color: transparent;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  color: black;
+}
+
+.bttn:hover {
+  background-color: white;
+  font-weight: bolder;
+  border-color: transparent;
+  color: black;
+}
+
+@media only screen and (max-device-width: 900px) {
+  .row {
     display: block;
   }
 }
-
-@media only screen and (max-device-width: 900px){
-  .row{
-    display: block;
-  }
-}
-
 </style>

@@ -1,8 +1,14 @@
 <template>
   <b-nav tabs fill>
-    <b-nav-item><NuxtLink to="/tela-jogar" class="link">Home</NuxtLink></b-nav-item>
-    <b-nav-item><NuxtLink to="/tela-jogar" class="link">Sobre Nós</NuxtLink></b-nav-item>
-    <b-nav-item><NuxtLink to="/tela-jogar" class="link">Entrar em Contato</NuxtLink></b-nav-item>
+    <b-nav-item>
+      <NuxtLink to="/tela-jogar" class="link">Home</NuxtLink>
+    </b-nav-item>
+    <b-nav-item>
+      <NuxtLink to="/tela-jogar" class="link">Sobre Nós</NuxtLink>
+    </b-nav-item>
+    <b-nav-item>
+      <NuxtLink to="/tela-jogar" class="link">Entrar em Contato</NuxtLink>
+    </b-nav-item>
   </b-nav>
 </template>
 
@@ -14,23 +20,24 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
-*{
-  font-family: 'Monteserrat', sans-serif;
+* {
+  font-family: 'Montserrat', sans-serif;
 }
-.nav{
+
+.nav {
   margin-bottom: 20px;
 }
-.link:hover{
+
+.link:hover {
   text-decoration: none;
-}
-a.nav-link{
-  padding: 15px;
-}
-a.nav-link:hover{
-  background-color: rgb(219, 236, 255);
-}
-.link{
   color: black;
 }
 
+a.nav-link:hover {
+  background-color: rgb(219, 236, 255);
+}
+
+.link {
+  color: black;
+}
 </style>

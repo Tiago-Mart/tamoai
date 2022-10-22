@@ -3,10 +3,10 @@
     <itemNav></itemNav>
     <itemProgress></itemProgress>
     <b-card class="bttns">
-      <b-button class="left"><img src="~/static/relogio.png" width="25px" height="25px" />00:45</b-button>
-      <b-button class="right"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
+      <b-button class="left timer"><img src="~/static/relogio.png" width="25px" height="25px" />00:45</b-button>
+      <b-button class="right vidas"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
     </b-card>
-    <b-card class="mb-2">
+    <b-card class="mb-2 questao">
       <b-card-title> Questão 1</b-card-title>
       <b-card-text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus vitae neque dignissim accumsan
@@ -38,11 +38,11 @@
     </b-card>
     <b-card class="bttns bottom">
       <b-button-toolbar key-nav aria-label="Toolbar with button groups">
-        <b-button class="left">&lsaquo;</b-button>
+        <b-button class="left btn seta">&lsaquo;</b-button>
         <itemDica></itemDica>
-        <b-button class="enviar">Enviar</b-button>
-        <b-button class="pular"><img src="~/static/coracaoPartido.png" width="20px" height="20px" />Pular</b-button>
-        <b-button class="right">&rsaquo;</b-button>
+        <b-button class="enviar btn">Enviar</b-button>
+        <b-button class="pular btn"><img src="~/static/coracaoPartido.png" width="20px" height="20px" />Pular</b-button>
+        <b-button class="right btn seta">&rsaquo;</b-button>
       </b-button-toolbar>
     </b-card>
     <itemFooter></itemFooter>
@@ -61,8 +61,9 @@ export default {
 </script>
 
 <style>
-body {
-  height: 100%;
+* {
+  width: auto;
+  height: auto;
 }
 
 .nav {
@@ -128,10 +129,75 @@ body {
   margin-left: 10px;
 }
 
+img {
+  width: 24px;
+  height: 24px;
+}
+
+.btn {
+  border-color: transparent;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.pular {
+  border-color: transparent;
+  background-color: rgb(251, 192, 30);
+}
+
+.pular:hover {
+  background-color: rgb(206, 152, 3);
+  border-color: transparent;
+}
+
+.enviar {
+  background-color: rgb(0, 137, 9);
+}
+
+.enviar:hover {
+  background-color: rgb(1, 99, 8);
+  border-color: transparent;
+}
+
+.seta,
+.timer {
+  background-color: #007bff;
+}
+
+.seta:hover,
+.timer:hover {
+  background-color: #0367d1;
+  border-color: transparent;
+}
+
+.vidas {
+  background-color: red;
+  cursor: default !important;
+}
+
+.vidas:hover {
+  border-color: transparent;
+  background-color: rgb(218, 3, 3);
+}
+
+.questao {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.timer {
+  cursor: default !important;
+}
+
+.timer img {
+  width: 30px;
+  height: 30px;
+}
+
 @media only screen and (max-device-width: 500px) {
   .card {
     border: none;
     width: 100%;
+    box-shadow: none;
   }
 }
 </style>
