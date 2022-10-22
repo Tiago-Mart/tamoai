@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class = "footer">
     <b-footer class="text-center text-lg-start bg-light text-muted" id="b-footer">
-      <section class="bottom d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        <div class="me-5 d-none d-lg-block">
+      <section class="bottom d-flex justify-content-center justify-content-lg-between p-4 border-bottom border-top">
+        <div class="mensagem me-5 d-none d-lg-block">
           <span>Acompanhe-nos nas redes sociais:</span>
         </div>
-        <div>
+        <div class = "images">
           <a href="" class="me-4 text-reset">
             <i class="fab fa-google">
               <img src="~/static/google.png" class="social" />
@@ -33,7 +33,15 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
-
+.footer{
+  margin-top: 20px;
+}
+.mensagem{
+  margin-left: 100px;
+}
+.images{
+  margin-right: 100px;
+}
 .social {
   width: 24px;
   height: 24px;
@@ -58,4 +66,10 @@
     bottom: 0;
   }
 }
+@media only screen and (max-device-width: 990px){
+  .images{
+    margin:0;
+  }
+}
+
 </style>

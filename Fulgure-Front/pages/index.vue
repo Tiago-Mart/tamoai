@@ -79,7 +79,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
 body {
-  background-color:beige;
+  background-color: rgb(255, 240, 212);
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: black;

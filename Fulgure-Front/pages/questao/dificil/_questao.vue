@@ -1,10 +1,13 @@
 <template>
   <div>
+    
     <itemNav></itemNav>
     <itemProgress></itemProgress>
-    <b-card class="bttns">
-      <b-button class="left"><img src="~/static/relogio.png" width="25px" height="25px" />00:45</b-button>
-      <b-button class="right"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
+    <b-card class="bttns" name = "bttns">
+      <b-button name = "relogio" class="left relogio"><img src="~/static/relogio.png" width="30px" height="30px" />
+        <span id  = "hour">00</span>:<span id = "second">00</span>
+      </b-button>
+      <b-button class="right coracao"><img src="~/static/coracao.png" width="22px" height="22px" />3</b-button>
     </b-card>
     <b-card class="mb-2">
       <b-card-title> Questão 1</b-card-title>
@@ -37,15 +40,15 @@
 
     </b-card>
     <b-card class="bttns bottom">
-      <b-button-toolbar key-nav aria-label="Toolbar with button groups">
-        <b-button class="left">&lsaquo;</b-button>
-        <itemDica></itemDica>
-        <b-button class="enviar">Enviar</b-button>
-        <b-button class="pular"><img src="~/static/coracaoPartido.png" width="20px" height="20px" />Pular</b-button>
-        <b-button class="right">&rsaquo;</b-button>
+      <b-button-toolbar class = "teste" key-nav aria-label="Toolbar with button groups">
+        <b-button class="left seta inferior">&lsaquo;</b-button>
+        <itemDica class = "inferior"></itemDica>
+        <b-button class="enviar inferior">Enviar</b-button>
+        <b-button class="pular inferior"><img src="~/static/coracaoPartido.png" width="20px" height="20px" />Pular</b-button>
+        <b-button class="right seta inferior">&rsaquo;</b-button>
       </b-button-toolbar>
     </b-card>
-    <itemFooter></itemFooter>
+    <itemFooter class = "footer"></itemFooter>
   </div>
 </template>
 
@@ -58,11 +61,16 @@ import itemDica from '~/components/itemDica.vue'
 export default {
   components: { itemNav, itemFooter, itemProgress, itemDica },
 }
+
 </script>
 
 <style>
 body {
   height: 100%;
+}
+
+.footer{
+  margin-top: 100px;
 }
 
 .nav {
@@ -128,10 +136,49 @@ body {
   margin-left: 10px;
 }
 
+.relogio{
+   background-color: #434343;
+}
+
+.seta {
+  background-color: #007bff;
+}
+
+.coracao{
+  background-color: red;
+}
+
+.relogio:active{
+  background-color: white;
+}
+
+.pular{
+  background-color: rgb(251, 192, 30);
+}
+
+.enviar{
+  background-color: rgb(0, 137, 9);
+}
+
+.btn{
+  border: none;
+}
+
+.inferior{
+  margin: 0 20px;
+}
+
 @media only screen and (max-device-width: 500px) {
   .card {
     border: none;
     width: 100%;
   }
 }
+
+@media only screen and (max-device-width: 650px) {
+  .inferior{
+    margin: 0 5px;
+  }
+}
+
 </style>

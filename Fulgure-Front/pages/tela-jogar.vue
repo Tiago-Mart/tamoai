@@ -19,21 +19,22 @@
           </b-jumbotron>
         </b-col>
         <b-col>
-          <b-card title="Fácil" class="mb-2">
+          <b-card title="Fácil" class="dificuldade mb-2">
             <b-card-text>
+              Some quick example text to build on the card title and make up the bulk of the card's content.
               Some quick example text to build on the card title and make up the bulk of the card's content.
             </b-card-text>
 
             <b-button href="#" variant="primary" v-on:click="rotaFacil">Jogar</b-button>
           </b-card>
-          <b-card title="Médio" class="mb-2">
+          <b-card title="Médio" class="dificuldade mb-2">
             <b-card-text>
               Some quick example text to build on the card title and make up the bulk of the card's content.
             </b-card-text>
 
             <b-button href="#" variant="primary" v-on:click="rotaMedio">Jogar</b-button>
           </b-card>
-          <b-card title="Difícil" class="mb-2">
+          <b-card title="Difícil" class="dificuldade mb-2">
             <b-card-text>
               Some quick example text to build on the card title and make up the bulk of the card's content.
             </b-card-text>
@@ -71,6 +72,33 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
+body{
+  background-color: white !important;
+}
+
+.dificuldade{
+  border: 0.5px rgb(151, 205, 151) solid;
+  border-radius: 5px;
+}
+
+.jumbotron, .col{
+  margin: 0;
+}
+
+.card-body{
+  text-align: justify;
+}
+
+.col{
+  margin-top: 20px;
+}
+
+.jumbotron{
+  background-color: rgb(255, 244, 226);
+  padding: 40px;
+  border: solid 1px  #efefef;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -80,8 +108,15 @@ export default {
 }
 
 @media only screen and (max-device-width: 900px){
-.row{
-  display: block;
+  .row{
+    display: block;
+  }
 }
+
+@media only screen and (max-device-width: 900px){
+  .row{
+    display: block;
+  }
 }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-button v-b-modal.modal-1><img src="~/static/lampada.png" width="20px" height="20px"/>Dica</b-button>
+        <b-button v-b-modal.modal-1 class = "dica"><img src="~/static/lampada.png" width="20px" height="20px"/>Dica</b-button>
         <b-modal ok-only id="modal-1" title="Título da dica">
             <p class="my-4">Texto da dica</p>
         </b-modal>
@@ -16,5 +16,9 @@ export default {
 <style>
 img{
     margin-right: 5px;
+}
+
+.dica{
+  background-color: rgb(251, 192, 30);
 }
 </style>

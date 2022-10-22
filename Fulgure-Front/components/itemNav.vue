@@ -23,4 +23,14 @@ export default {
 .link:hover{
   text-decoration: none;
 }
+a.nav-link{
+  padding: 15px;
+}
+a.nav-link:hover{
+  background-color: rgb(219, 236, 255);
+}
+.link{
+  color: black;
+}
+
 </style>
