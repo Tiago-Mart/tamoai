@@ -14,13 +14,26 @@
           </p>
           <b-form @submit="onSubmit" @reset="onReset">
             <p class="label">Email</p>
-            <b-form-input class="email input" type="email" placeholder="example@mail.com" v-model="form.email" required>
+            <b-form-input
+              class="email input"
+              type="email"
+              placeholder="example@mail.com"
+              v-model="form.email"
+              required
+            >
             </b-form-input>
             <p class="label">Senha</p>
-            <b-form-input class="senha input" type="password" placeholder="••••••••••••••••••" v-model="form.senha"
-              required>
+            <b-form-input
+              class="senha input"
+              type="password"
+              placeholder="••••••••••••••••••"
+              v-model="form.senha"
+              required
+            >
             </b-form-input>
-            <b-button class="enviar-login" type="submit" v-on:click="criaLogin">Enviar</b-button>
+            <b-button class="enviar-login" type="submit" v-on:click="criaLogin"
+              >Enviar</b-button
+            >
           </b-form>
         </b-card>
       </b-col>
@@ -74,7 +87,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
 body {
-  background-color: #fafab6;
+  background-color: rgb(247, 239, 204);
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: black;
@@ -133,6 +146,7 @@ h3 {
 .card {
   height: 100%;
   border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 @media only screen and (max-device-width: 700px) {
@@ -148,6 +162,7 @@ h3 {
     border: none;
     width: 100%;
     height: 100%;
+    box-shadow: none;
   }
 }
 </style>

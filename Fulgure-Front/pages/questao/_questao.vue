@@ -6,7 +6,7 @@
       <b-button class="left timer"><img src="~/static/relogio.png" width="25px" height="25px" />00:45</b-button>
       <b-button class="right vidas"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
     </b-card>
-    <b-card class="mb-2 questao">
+    <b-card class="mb-2 box">
       <b-card-title> Questão 1</b-card-title>
       <b-card-text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus vitae neque dignissim accumsan
@@ -64,6 +64,17 @@ export default {
 * {
   width: auto;
   height: auto;
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+}
+
+body {
+  height: 100%;
 }
 
 .nav {
@@ -129,75 +140,46 @@ export default {
   margin-left: 10px;
 }
 
-img {
-  width: 24px;
-  height: 24px;
+.relogio {
+  background-color: #434343;
 }
 
-.btn {
-  border-color: transparent;
-  font-weight: bold;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.seta {
+  background-color: #007bff;
+}
+
+.coracao {
+  background-color: red;
+}
+
+.relogio:active {
+  background-color: white;
 }
 
 .pular {
-  border-color: transparent;
   background-color: rgb(251, 192, 30);
-}
-
-.pular:hover {
-  background-color: rgb(206, 152, 3);
-  border-color: transparent;
 }
 
 .enviar {
   background-color: rgb(0, 137, 9);
 }
 
-.enviar:hover {
-  background-color: rgb(1, 99, 8);
-  border-color: transparent;
+.btn {
+  border: none;
 }
 
-.seta,
-.timer {
-  background-color: #007bff;
+.inferior {
+  margin: 0 20px;
 }
 
-.seta:hover,
-.timer:hover {
-  background-color: #0367d1;
-  border-color: transparent;
-}
-
-.vidas {
-  background-color: red;
-  cursor: default !important;
-}
-
-.vidas:hover {
-  border-color: transparent;
-  background-color: rgb(218, 3, 3);
-}
-
-.questao {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-
-.timer {
-  cursor: default !important;
-}
-
-.timer img {
-  width: 30px;
-  height: 30px;
+.box {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 @media only screen and (max-device-width: 500px) {
   .card {
     border: none;
     width: 100%;
-    box-shadow: none;
   }
 }
 </style>

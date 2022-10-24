@@ -108,7 +108,7 @@ body {
 }
 
 .medio {
-  background-color: #fcfd96;
+  background-color: #f3d500;
 }
 
 .dificil {

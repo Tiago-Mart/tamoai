@@ -79,7 +79,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Montserrat:wght@300&display=swap');
 
 body {
-  background-color: #fafab6;
+  background-color: rgb(247, 239, 204);
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: black;
@@ -138,6 +138,7 @@ h3 {
 .card-index {
   height: 100%;
   border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 @media only screen and (max-device-width: 700px) {
@@ -153,6 +154,7 @@ h3 {
     border: none;
     width: 100%;
     height: 100%;
+    box-shadow: none;
   }
 }
 </style>

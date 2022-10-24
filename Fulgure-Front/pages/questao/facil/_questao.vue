@@ -3,46 +3,50 @@
     <itemNav></itemNav>
     <itemProgress></itemProgress>
     <b-card class="bttns">
-      <b-button name = "relogio" class="left relogio"><img src="~/static/relogio.png" width="30px" height="30px" />
-        <span id  = "hour">00</span>:<span id = "second">00</span>
-      </b-button>      <b-button class="right coracao"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
+      <b-button name="relogio" class="left relogio"
+        ><img src="~/static/relogio.png" width="30px" height="30px" />
+        <span id="hour">00</span>:<span id="second">00</span>
+      </b-button>
+      <b-button class="right coracao"
+        ><img
+          src="~/static/coracao.png"
+          width="20px"
+          height="20px"
+        />3</b-button
+      >
     </b-card>
-    <b-card class="mb-2">
+    <b-card class="mb-2 box">
       <b-card-title> Questão 1</b-card-title>
       <b-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus vitae neque dignissim accumsan
-        id
-        sed ipsum. Nulla non tempor purus. Phasellus pulvinar elit ante, ullamcorper scelerisque nisi faucibus in.
-        Maecenas pretium malesuada ligula non sodales. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum
-        primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Nunc
-        ex enim, euismod nec cursus ac, mattis at purus. Aliquam libero erat, ultricies in lacus a, fermentum pharetra
-        orci. </b-card-text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet
+        tellus vitae neque dignissim accumsan id sed ipsum. Nulla non tempor
+        purus. Phasellus pulvinar elit ante, ullamcorper scelerisque nisi
+        faucibus in. Maecenas pretium malesuada ligula non sodales. Suspendisse
+        potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+        Orci varius natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus. Nunc ex enim, euismod nec cursus ac, mattis at purus.
+        Aliquam libero erat, ultricies in lacus a, fermentum pharetra orci.
+      </b-card-text>
       <b-form-radio-group id="grupo1">
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
       </b-form-radio-group>
-
     </b-card>
     <b-card class="bttns bottom">
       <b-button-toolbar key-nav aria-label="Toolbar with button groups">
         <b-button class="left seta">&lsaquo;</b-button>
-        <itemDica class = "inferior"></itemDica>
+        <itemDica class="inferior"></itemDica>
         <b-button class="enviar inferior">Enviar</b-button>
-        <b-button class="pular inferior"><img src="~/static/coracaoPartido.png" width="20px" height="20px" />Pular</b-button>
+        <b-button class="pular inferior"
+          ><img
+            src="~/static/coracaoPartido.png"
+            width="20px"
+            height="20px"
+          />Pular</b-button
+        >
         <b-button class="right seta inferior">&rsaquo;</b-button>
       </b-button-toolbar>
     </b-card>
@@ -62,6 +66,18 @@ export default {
 </script>
 
 <style>
+* {
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+}
+
 body {
   height: 100%;
 }
@@ -129,37 +145,40 @@ body {
   margin-left: 10px;
 }
 
-
-.relogio{
-   background-color: #434343;
+.relogio {
+  background-color: #434343;
 }
 
 .seta {
   background-color: #007bff;
 }
 
-.coracao{
+.coracao {
   background-color: red;
 }
 
-.relogio:active{
+.relogio:active {
   background-color: white;
 }
 
-.pular{
+.pular {
   background-color: rgb(251, 192, 30);
 }
 
-.enviar{
+.enviar {
   background-color: rgb(0, 137, 9);
 }
 
-.btn{
+.btn {
   border: none;
 }
 
-.inferior{
+.inferior {
   margin: 0 20px;
+}
+
+.box {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 @media only screen and (max-device-width: 500px) {

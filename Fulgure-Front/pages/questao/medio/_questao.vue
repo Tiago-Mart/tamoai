@@ -7,7 +7,7 @@
         <span id  = "hour">00</span>:<span id = "second">00</span>
       </b-button>      <b-button class="right coracao"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
     </b-card>
-    <b-card class="mb-2">
+    <b-card class="mb-2 box">
       <b-card-title> Questão 1</b-card-title>
       <b-card-text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus vitae neque dignissim accumsan
@@ -62,6 +62,18 @@ export default {
 </script>
 
 <style>
+* {
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+}
+
 body {
   height: 100%;
 }
@@ -129,50 +141,46 @@ body {
   margin-left: 10px;
 }
 
-
-.relogio{
-   background-color: #434343;
+.relogio {
+  background-color: #434343;
 }
 
 .seta {
   background-color: #007bff;
 }
 
-.coracao{
+.coracao {
   background-color: red;
 }
 
-.relogio:active{
+.relogio:active {
   background-color: white;
 }
 
-.pular{
+.pular {
   background-color: rgb(251, 192, 30);
 }
 
-.enviar{
+.enviar {
   background-color: rgb(0, 137, 9);
 }
 
-.btn{
+.btn {
   border: none;
 }
 
-.inferior{
+.inferior {
   margin: 0 20px;
 }
 
+.box {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
 
 @media only screen and (max-device-width: 500px) {
   .card {
     border: none;
     width: 100%;
-  }
-}
-
-@media only screen and (max-device-width: 650px) {
-  .inferior{
-    margin: 0 5px;
   }
 }
 </style>
