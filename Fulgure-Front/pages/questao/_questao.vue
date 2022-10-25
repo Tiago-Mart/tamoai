@@ -3,46 +3,54 @@
     <itemNav></itemNav>
     <itemProgress></itemProgress>
     <b-card class="bttns">
-      <b-button class="left timer"><img src="~/static/relogio.png" width="25px" height="25px" />00:45</b-button>
-      <b-button class="right vidas"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
+      <b-button class="left timer box-btn"
+        ><img
+          src="~/static/relogio.png"
+          width="25px"
+          height="25px"
+        />00:45</b-button
+      >
+      <b-button class="right vidas box-btn"
+        ><img
+          src="~/static/coracao.png"
+          width="20px"
+          height="20px"
+        />3</b-button
+      >
     </b-card>
     <b-card class="mb-2 box">
       <b-card-title> Questão 1</b-card-title>
       <b-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus vitae neque dignissim accumsan
-        id
-        sed ipsum. Nulla non tempor purus. Phasellus pulvinar elit ante, ullamcorper scelerisque nisi faucibus in.
-        Maecenas pretium malesuada ligula non sodales. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum
-        primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Nunc
-        ex enim, euismod nec cursus ac, mattis at purus. Aliquam libero erat, ultricies in lacus a, fermentum pharetra
-        orci. </b-card-text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet
+        tellus vitae neque dignissim accumsan id sed ipsum. Nulla non tempor
+        purus. Phasellus pulvinar elit ante, ullamcorper scelerisque nisi
+        faucibus in. Maecenas pretium malesuada ligula non sodales. Suspendisse
+        potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+        Orci varius natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus. Nunc ex enim, euismod nec cursus ac, mattis at purus.
+        Aliquam libero erat, ultricies in lacus a, fermentum pharetra orci.
+      </b-card-text>
       <b-form-radio-group id="grupo1">
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
-        <b-form-radio class="alternativas">
-          Lorem ipsum
-        </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
       </b-form-radio-group>
-
     </b-card>
     <b-card class="bttns bottom">
       <b-button-toolbar key-nav aria-label="Toolbar with button groups">
-        <b-button class="left btn seta">&lsaquo;</b-button>
+        <b-button class="left btn seta box-btn">&lsaquo;</b-button>
         <itemDica></itemDica>
-        <b-button class="enviar btn">Enviar</b-button>
-        <b-button class="pular btn"><img src="~/static/coracaoPartido.png" width="20px" height="20px" />Pular</b-button>
-        <b-button class="right btn seta">&rsaquo;</b-button>
+        <b-button class="enviar btn box-btn">Enviar</b-button>
+        <b-button class="pular btn box-btn"
+          ><img
+            src="~/static/coracaoPartido.png"
+            width="20px"
+            height="20px"
+          />Pular</b-button
+        >
+        <b-button class="right btn seta box-btn">&rsaquo;</b-button>
       </b-button-toolbar>
     </b-card>
     <itemFooter></itemFooter>
@@ -148,8 +156,8 @@ body {
   background-color: #007bff;
 }
 
-.coracao {
-  background-color: red;
+.vidas {
+  background-color: red !important;
 }
 
 .relogio:active {
@@ -173,13 +181,24 @@ body {
 }
 
 .box {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+
+.box-btn {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.footer {
+  margin-top: 200px;
 }
 
 @media only screen and (max-device-width: 500px) {
   .card {
     border: none;
     width: 100%;
+  }
+  .footer {
+    margin-top: 50px;
   }
 }
 </style>

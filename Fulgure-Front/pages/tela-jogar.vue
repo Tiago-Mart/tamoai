@@ -6,38 +6,50 @@
         <b-col>
           <b-jumbotron>
             <h1>Fulgure, Brasil!</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text ever
-              since the 1500s, when an unknown printer took a galley of type and
-              scrambled it to make a type specimen book. It has survived not only
-              five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged. It was popularised in the 1960s with
-              the release of Letraset sheets containing Lorem Ipsum passages, and
-              more recently with desktop publishing software like Aldus PageMaker
-              including versions of Lorem Ipsum.</p>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </p>
             <itemCarrossel></itemCarrossel>
           </b-jumbotron>
         </b-col>
         <b-col>
           <b-card title="Fácil" class="facil mb-2">
             <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
             </b-card-text>
 
-            <b-button href="#" v-on:click="rotaFacil" class="bttn">Jogar</b-button>
+            <b-button href="#" v-on:click="rotaFacil" class="bttn"
+              >Jogar</b-button
+            >
           </b-card>
           <b-card title="Médio" class="medio mb-2">
             <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
             </b-card-text>
 
-            <b-button href="#" v-on:click="rotaMedio" class="bttn">Jogar</b-button>
+            <b-button href="#" v-on:click="rotaMedio" class="bttn"
+              >Jogar</b-button
+            >
           </b-card>
           <b-card title="Difícil" class="dificil mb-2">
             <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
             </b-card-text>
-            <b-button href="#" v-on:click="rotaDificil" class="bttn">Jogar</b-button>
+            <b-button href="#" v-on:click="rotaDificil" class="bttn"
+              >Jogar</b-button
+            >
           </b-card>
         </b-col>
       </b-row>
@@ -62,10 +74,9 @@ export default {
     },
     rotaDificil() {
       this.$router.push('/questao/dificil')
-    }
-  }
+    },
+  },
 }
-
 </script>
 
 <style>
@@ -79,7 +90,9 @@ export default {
 }
 
 body {
-  background-color: white !important;
+  background-image: url('~/static/fundo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .card {
@@ -99,27 +112,15 @@ body {
 .jumbotron {
   background-color: #ffff;
   padding: 40px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
-}
-
-.facil {
-  background-color: #4ec96fe3;
-}
-
-.medio {
-  background-color: #f3d500;
-}
-
-.dificil {
-  background-color: #6bbef9;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .bttn {
-  background-color: white;
   border-color: transparent;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  color: white;
 }
 
 .bttn:hover {
@@ -127,6 +128,20 @@ body {
   font-weight: bolder;
   border-color: transparent;
   color: black;
+}
+
+.facil .bttn {
+  background-color: green;
+}
+.medio .bttn {
+  background-color: rgb(233, 191, 52);
+}
+.dificil .bttn {
+  background-color: rgb(53, 128, 199);
+}
+
+.footer {
+  margin-top: 50px;
 }
 
 @media only screen and (max-device-width: 900px) {
