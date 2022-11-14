@@ -28,7 +28,7 @@
               bulk of the card's content.
             </b-card-text>
 
-            <b-button href="#" v-on:click="rotaFacil" class="bttn"
+            <b-button href="/questao/facil"  class="bttn"
               >Jogar</b-button
             >
           </b-card>
@@ -38,7 +38,7 @@
               bulk of the card's content.
             </b-card-text>
 
-            <b-button href="#" v-on:click="rotaMedio" class="bttn"
+            <b-button href="/questao/medio" class="bttn"
               >Jogar</b-button
             >
           </b-card>
@@ -47,7 +47,7 @@
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </b-card-text>
-            <b-button href="#" v-on:click="rotaDificil" class="bttn"
+            <b-button href="/questao/dificil" class="bttn"
               >Jogar</b-button
             >
           </b-card>
@@ -64,18 +64,7 @@ import itemCarrossel from '~/components/itemCarrossel.vue'
 import itemFooter from '~/components/itemFooter.vue'
 
 export default {
-  components: { itemNav, itemFooter, itemCarrossel },
-  methods: {
-    rotaFacil() {
-      this.$router.push('/questao/facil')
-    },
-    rotaMedio() {
-      this.$router.push('/questao/medio')
-    },
-    rotaDificil() {
-      this.$router.push('/questao/dificil')
-    },
-  },
+  components: { itemNav, itemFooter, itemCarrossel }
 }
 </script>
 
@@ -127,7 +116,7 @@ body {
   background-color: white;
   font-weight: bolder;
   border-color: transparent;
-  color: black;
+  color: white;
 }
 
 .facil .bttn {

@@ -7,9 +7,8 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#" class="nav-item">Home</b-nav-item>
+          <b-nav-item href="/tela-jogar" class="nav-item">Home</b-nav-item>
           <b-nav-item href="#" class="nav-item">Sobre Nós</b-nav-item>
-          <b-nav-item href="#" class="nav-item">Entrar em Contato</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -17,9 +16,10 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em>Usuário</em>
+              <em><img src="~/static/selo.png" id="icon"/></em>
             </template>
-            <b-dropdown-item href="#">Perfil</b-dropdown-item>
+            <b-dropdown-item href="#">Acertos: 28</b-dropdown-item>
+            <b-dropdown-item href="#">Erros: 28</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -66,4 +66,8 @@ a.nav-link:hover {
   margin-right: 40px;
 }
 
+#icon{
+  width: 30px !important;
+  height: 30px !important;
+}
 </style>

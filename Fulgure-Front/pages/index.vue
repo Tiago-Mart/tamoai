@@ -4,8 +4,11 @@
       <b-col>
         <b-card class="card-index">
           <h3>Cadastrar</h3>
-          <p class="label instrucao">
+          <p class="label">
             Insira os seus dados para realizar o cadastro.
+          </p>
+          <p class="instrucao">
+            Já possui cadastro? <a href="/tela-login">Clique aqui</a> para realizar o login.
           </p>
           <b-form @submit="onSubmit" @reset="onReset">
             <p class="label">Nome</p>
@@ -49,15 +52,12 @@
         </b-card>
       </b-col>
     </b-row>
-    <itemFooter></itemFooter>
   </div>
 </template>
 
 <script>
-import itemFooter from '~/components/itemFooter.vue'
 export default {
   name: 'IndexPage',
-  components: { itemFooter },
   data() {
     return {
       form: {

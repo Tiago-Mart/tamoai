@@ -2,22 +2,11 @@
   <div>
     <itemNav></itemNav>
     <itemProgress></itemProgress>
-    <b-card class="bttns">
-      <b-button class="left timer box-btn"
-        ><img
-          src="~/static/relogio.png"
-          width="25px"
-          height="25px"
-        />00:45</b-button
-      >
-      <b-button class="right vidas box-btn"
-        ><img
-          src="~/static/coracao.png"
-          width="20px"
-          height="20px"
-        />3</b-button
-      >
-    </b-card>
+    <b-button-toolbar key-nav aria-label="Toolbar with button groups" class="toolbar-top">
+      <b-button class="left box-btn" id="timer"><img src="~/static/relogio.png" /><span id="timer-span"></span>
+      </b-button>
+      <b-button class="right box-btn" variant="danger"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
+    </b-button-toolbar>
     <b-card class="mb-2 box">
       <b-card-title> Questão 1</b-card-title>
       <b-card-text>
@@ -42,14 +31,8 @@
       <b-button-toolbar key-nav aria-label="Toolbar with button groups">
         <b-button class="left btn seta box-btn">&lsaquo;</b-button>
         <itemDica></itemDica>
-        <b-button class="enviar btn box-btn">Enviar</b-button>
-        <b-button class="pular btn box-btn"
-          ><img
-            src="~/static/coracaoPartido.png"
-            width="20px"
-            height="20px"
-          />Pular</b-button
-        >
+        <b-button v-on:click="timerStart" class="enviar btn box-btn">Enviar</b-button>
+        <itemPular></itemPular>
         <b-button class="right btn seta box-btn">&rsaquo;</b-button>
       </b-button-toolbar>
     </b-card>
@@ -62,9 +45,33 @@ import itemNav from '~/components/itemNav.vue'
 import itemFooter from '~/components/itemFooter.vue'
 import itemProgress from '~/components/itemProgress.vue'
 import itemDica from '~/components/itemDica.vue'
+import itemPular from '~/components/itemPular.vue'
 
 export default {
-  components: { itemNav, itemFooter, itemProgress, itemDica },
+  components: { itemNav, itemFooter, itemProgress, itemDica, itemPular },
+
+  methods: {
+    startTimer() {
+      const duration = 60 * 2;
+      const display = document.querySelector('#timer-span');
+      let timer = duration;
+      let minutes, seconds;
+      setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) {
+          timer = duration;
+        }
+      }, 1000);
+    }
+  },
+  mounted() {
+    this.startTimer() // Calls the method before page loads
+  }
+
 }
 </script>
 
@@ -83,6 +90,7 @@ img {
 
 body {
   height: 100%;
+  background-image: none !important;
 }
 
 .nav {
@@ -105,8 +113,20 @@ body {
   width: 100%;
 }
 
+.toolbar-top {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
 .enviar {
   margin: 0 5px;
+  background-color: rgb(0, 137, 9);
+
 }
 
 .bttns {
@@ -123,16 +143,16 @@ body {
   justify-content: flex-end;
 }
 
-.bttns .left {
+.toolbar-top .left {
   display: inline-block;
   flex-direction: left;
 }
 
-.bttns .right {
+.toolbar-top .right {
   float: right;
 }
 
-.left img {
+.toolbar-top .left img {
   margin-right: 5px;
 }
 
@@ -148,28 +168,16 @@ body {
   margin-left: 10px;
 }
 
-.relogio {
-  background-color: #434343;
-}
-
 .seta {
   background-color: #007bff;
 }
 
-.vidas {
-  background-color: red !important;
+.seta:hover{
+  background-color: #0766cc;
 }
 
-.relogio:active {
-  background-color: white;
-}
-
-.pular {
-  background-color: rgb(251, 192, 30);
-}
-
-.enviar {
-  background-color: rgb(0, 137, 9);
+.enviar:hover {
+  background-color: rgb(3, 110, 10);
 }
 
 .btn {
@@ -192,13 +200,26 @@ body {
   margin-top: 200px;
 }
 
+#timer {
+  background-color: transparent;
+  display: block;
+  color: black;
+  cursor: default;
+}
+
 @media only screen and (max-device-width: 500px) {
   .card {
     border: none;
     width: 100%;
+    box-shadow: none !important;
   }
+
   .footer {
     margin-top: 50px;
+  }
+
+  .toolbar-top {
+    width: 90%;
   }
 }
 </style>

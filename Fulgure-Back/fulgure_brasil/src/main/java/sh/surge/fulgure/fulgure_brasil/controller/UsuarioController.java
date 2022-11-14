@@ -20,8 +20,9 @@ import sh.surge.fulgure.fulgure_brasil.security.jwt.JwtUtils;
 @RestController
 @CrossOrigin
 public class UsuarioController {
+    
     @Autowired
-    UsuarioRepository UsuarioRepository;
+    UsuarioRepository usuarioRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -32,14 +33,14 @@ public class UsuarioController {
     @PostMapping("/usuario")
     public ResponseEntity<String> createUsuario(@RequestBody Usuario usuarioNovo){
         // Se encontrar no banco, não poderá criar um novo usuário
-        boolean exists = UsuarioRepository.findByNome(usuarioNovo.getNome()).stream().count() > 0;
+        boolean exists = usuarioRepository.findByNome(usuarioNovo.getNome()).stream().count() > 0;
         // Mas não existir, cra o novo usuário no banco
         if(!exists){
             //criptografa a senha do usuário para por no banco de dados
             usuarioNovo.setSenha(
                 passwordEncoder.encode(usuarioNovo.getSenha())
             );
-            UsuarioRepository.save(usuarioNovo);
+            usuarioRepository.save(usuarioNovo);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).build();    
@@ -47,7 +48,7 @@ public class UsuarioController {
 
     @GetMapping("/usuario")
     public List<Usuario> getAllUsuarios(){
-        return (List<Usuario>)UsuarioRepository.findAll();
+        return (List<Usuario>)usuarioRepository.findAll();
     }
     
     @GetMapping("/usuario/me")
@@ -56,6 +57,6 @@ public class UsuarioController {
         System.out.println(token);
         token = token.substring(7, token.length());
         String nome = jwtUtils.getUserNameFromJwtToken(token);
-        return UsuarioRepository.findByNome(nome).get(0);
+        return usuarioRepository.findByNome(nome).get(0);
     }
 }
