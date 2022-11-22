@@ -213,8 +213,7 @@ INSERT INTO questao (
     )
 VALUES (
         4,
-        'Em qual estado se encontra a maior metrópole do Brasil e qual é o nome dela?
-',
+        'Em qual estado se encontra a maior metrópole do Brasil e qual é o nome dela?',
         'O Brasil é o maior produtor de café do mundo.',
         'Essa cidade é a capital do estado homônimo, localizado na região Sudeste do Brasil. Trata-se da maior metrópole do país, cuja região de influência é formada por uma população de 49.295.747 habitantes, ao passo que a sua região metropolitana compreende de forma direta 21,5 milhões de pessoas.',
         'Sudeste, São Paulo',

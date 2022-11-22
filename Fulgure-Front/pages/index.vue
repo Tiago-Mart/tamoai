@@ -175,10 +175,6 @@ h3 {
     background-color: white !important;
   }
 
-  .right {
-    display: none;
-  }
-
   .card-index {
     border: none;
     width: 100%;

@@ -86,9 +86,18 @@ export default {
         }
       }, 1000)
     },
+
+    hideAlternativa(){
+      const alternativa = document.getElementByClassName("alternativas")
+      if (alternativa.value == questao.id){
+        alternativa.style.display = none;
+      }
+    }
   },
+  // Chama a função depois que a página é carregada
   mounted() {
-    this.startTimer() // Chama a função depois que a página é carregada
+    this.startTimer() 
+    this.hideAlternativa()
   },
 }
 </script>

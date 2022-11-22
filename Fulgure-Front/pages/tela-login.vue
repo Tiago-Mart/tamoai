@@ -12,7 +12,7 @@
             <b-form-input
               class="nome input"
               type="nome"
-              placeholder="example@mail.com"
+              placeholder="Insira seu nome"
               v-model="formLogin.username"
               required
             >
@@ -42,7 +42,7 @@ export default {
     return {
       formLogin: {
         username: '',
-        password: '1234',
+        password: '',
       },
     }
   },
@@ -173,14 +173,10 @@ h3 {
     background-image: none;
   }
 
-  .left {
-    display: none !important;
-  }
-
   .card {
     border: none;
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     box-shadow: none;
   }
 }

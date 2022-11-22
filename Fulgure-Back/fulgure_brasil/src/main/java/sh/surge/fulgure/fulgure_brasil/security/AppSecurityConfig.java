@@ -208,6 +208,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/areaConhecimento").permitAll()
+                .antMatchers(HttpMethod.POST, "/questao").permitAll()
+                .antMatchers(HttpMethod.POST, "/alternativas").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests

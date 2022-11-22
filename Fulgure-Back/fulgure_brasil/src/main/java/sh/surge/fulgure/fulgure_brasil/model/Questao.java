@@ -25,12 +25,12 @@ public class Questao {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_alternativas") // tabela submissa
-    @JsonManagedReference
+    // @JsonManagedReference
     private Alternativas alternativas;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "associacao_questao_areaConhecimento", joinColumns = @JoinColumn(name = "fk_questao"), inverseJoinColumns = @JoinColumn(name = "fk_areaConhecimento"))
-    @JsonManagedReference
+    // @JsonManagedReference
     private List<AreaConhecimento> areaConhecimento;
 
     public Questao() {
