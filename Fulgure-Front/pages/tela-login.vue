@@ -7,13 +7,13 @@
           <p class="label instrucao">
             Insira os seus dados para realizar o login.
           </p>
-          <b-form @submit="onSubmit" @reset="onReset">
-            <p class="label">Email</p>
+          <b-form @reset="onReset" @submit.prevent="doLogin">
+            <p class="label">Nome</p>
             <b-form-input
-              class="email input"
-              type="email"
+              class="nome input"
+              type="nome"
               placeholder="example@mail.com"
-              v-model="form.email"
+              v-model="formLogin.username"
               required
             >
             </b-form-input>
@@ -22,13 +22,11 @@
               class="senha input"
               type="password"
               placeholder="••••••••••••••••••"
-              v-model="form.senha"
+              v-model="formLogin.password"
               required
             >
             </b-form-input>
-            <b-button class="enviar-login" type="submit" v-on:click="criaLogin"
-              >Enviar</b-button
-            >
+            <b-button class="enviar-login" type="submit">Enviar</b-button>
           </b-form>
         </b-card>
       </b-col>
@@ -39,38 +37,61 @@
 <script>
 export default {
   name: 'IndexPage',
-
+  auth: false,
   data() {
     return {
-      form: {
-        email: '',
-        senha: '',
+      formLogin: {
+        username: '',
+        password: '1234',
       },
-      show: true,
     }
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault()
-      alert(JSON.stringify(this.form))
-    },
     onReset(event) {
       event.preventDefault()
       this.form.nome = ''
-      this.form.email = ''
       this.form.senha = null
       this.show = false
       this.$nextTick(() => {
         this.show = true
       })
     },
-    criaLogin() {
-      this.$axios.post('/usuario', {
-        nome: this.form.nome,
-        email: this.form.email,
-        senha: this.form.senha,
-      })
-      this.$router.push('/tela-jogar')
+    async setAuthToken(data) {
+      const authHeader = 'Bearer ' + data.token
+      // console.log(data.token);
+      // console.log(data);
+      this.$auth.setUserToken(authHeader, null)
+      this.$axios.setHeader('Authorization', authHeader)
+      // this.$auth.ctx.app.$axios.setHeader('Authorization', authHeader);
+      // const response = await this.$axios.get('/user/me', {
+      //     headers:{
+      //       'Authorization': authHeader,
+      //     }
+      //   }
+      // )
+      const response = await this.$axios.get('/usuario/me')
+      this.$auth.setUser(response.data)
+      // this.$router.push('/');
+    },
+
+    async doLogin() {
+      try {
+        const response = await this.$axios.post('/login', this.formLogin)
+
+        if (response.data.data.token) {
+          await this.setAuthToken(response.data.data)
+        }
+
+        if (this.$auth.loggedIn) {
+          console.log('Login feito com sucesso.')
+          console.log(this.$auth.strategy.token)
+          console.log(this.$auth.strategy)
+          this.$router.push('/tela-jogar')
+        }
+      } catch (error) {
+        console.log(error)
+        alert('Nome ou senha incorretos!')
+      }
     },
   },
 }

@@ -37,7 +37,29 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth-next'
   ],
+
+  auth: {
+    // Options to '@nuxtjs/auth-next' module
+    strategies: {
+      local: {
+        user: {
+          autoFetch: false,
+        },
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: "data.token"},
+          // user: { url: '/user/me', method: 'get'},
+          logout: false,
+        },
+      },
+    },
+  },
+
+  router:{
+    // Define que todas as páginas do app só serão acessíveis se o login tiver sido realizado
+    middleware: ["auth"]
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

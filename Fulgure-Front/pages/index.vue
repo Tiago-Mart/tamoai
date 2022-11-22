@@ -4,11 +4,10 @@
       <b-col>
         <b-card class="card-index">
           <h3>Cadastrar</h3>
-          <p class="label">
-            Insira os seus dados para realizar o cadastro.
-          </p>
+          <p class="label">Insira os seus dados para realizar o cadastro.</p>
           <p class="instrucao">
-            Já possui cadastro? <a href="/tela-login">Clique aqui</a> para realizar o login.
+            Já possui cadastro? <a href="/tela-login">Clique aqui</a> para
+            realizar o login.
           </p>
           <b-form @submit="onSubmit" @reset="onReset">
             <p class="label">Nome</p>
@@ -58,6 +57,8 @@
 <script>
 export default {
   name: 'IndexPage',
+  // Define que essa página está acessível para todo mundo
+  auth: false,
   data() {
     return {
       form: {
@@ -89,7 +90,7 @@ export default {
         email: this.form.email,
         senha: this.form.senha,
       })
-      this.$router.push('/tela-jogar')
+      this.$router.push('/tela-login')
     },
   },
 }
@@ -165,7 +166,7 @@ h3 {
   margin: 0 auto;
 }
 
-.footer{
+.footer {
   margin-top: 90px;
 }
 @media only screen and (max-device-width: 900px) {

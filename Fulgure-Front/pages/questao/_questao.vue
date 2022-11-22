@@ -2,38 +2,50 @@
   <div>
     <itemNav></itemNav>
     <itemProgress></itemProgress>
-    <b-button-toolbar key-nav aria-label="Toolbar with button groups" class="toolbar-top">
-      <b-button class="left box-btn" id="timer"><img src="~/static/relogio.png" /><span id="timer-span"></span>
+    <b-button-toolbar
+      key-nav
+      aria-label="Toolbar with button groups"
+      class="toolbar-top"
+    >
+      <b-button class="left box-btn" id="timer"
+        ><img src="~/static/relogio.png" /><span id="timer-span"></span>
       </b-button>
-      <b-button class="right box-btn" variant="danger"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
+      <b-button class="right box-btn" variant="danger"
+        ><img
+          src="~/static/coracao.png"
+          width="20px"
+          height="20px"
+        />3</b-button
+      >
     </b-button-toolbar>
     <b-card class="mb-2 box">
-      <b-card-title> Questão 1</b-card-title>
+      <b-card-title> Questão {{ questao.id }}</b-card-title>
       <b-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet
-        tellus vitae neque dignissim accumsan id sed ipsum. Nulla non tempor
-        purus. Phasellus pulvinar elit ante, ullamcorper scelerisque nisi
-        faucibus in. Maecenas pretium malesuada ligula non sodales. Suspendisse
-        potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-        Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Nunc ex enim, euismod nec cursus ac, mattis at purus.
-        Aliquam libero erat, ultricies in lacus a, fermentum pharetra orci.
+        {{ questao.comando }}
       </b-card-text>
       <b-form-radio-group id="grupo1">
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+        <b-form-radio
+          v-for="alternativa in questao.alternativas"
+          :key="alternativa"
+          class="alternativas"
+        >
+          {{ alternativa }}
+        </b-form-radio>
       </b-form-radio-group>
     </b-card>
     <b-card class="bttns bottom">
       <b-button-toolbar key-nav aria-label="Toolbar with button groups">
-        <b-button class="left btn seta box-btn">&lsaquo;</b-button>
-        <itemDica></itemDica>
-        <b-button v-on:click="timerStart" class="enviar btn box-btn">Enviar</b-button>
+        <NuxtLink v-bind:to="`/questao/${questao.id - 1}`">
+          <b-button class="left btn seta box-btn">&lsaquo;</b-button>
+        </NuxtLink>
+        <itemDica :textoDica="questao.dica"></itemDica>
+        <b-button class="enviar btn box-btn">Enviar</b-button>
         <itemPular></itemPular>
-        <b-button class="right btn seta box-btn">&rsaquo;</b-button>
+        <NuxtLink v-bind:to="`/questao/${questao.id + 1}`"
+          ><b-button class="right btn seta box-btn"
+            >&rsaquo;</b-button
+          ></NuxtLink
+        >
       </b-button-toolbar>
     </b-card>
     <itemFooter></itemFooter>
@@ -49,29 +61,35 @@ import itemPular from '~/components/itemPular.vue'
 
 export default {
   components: { itemNav, itemFooter, itemProgress, itemDica, itemPular },
+  auth: false,
+  async asyncData({ $axios, route }) {
+    const idQuestao = route.params.questao
+    const resposta = await $axios.get('/questao/' + idQuestao)
+    const questao = resposta.data
+    return { questao }
+  },
 
   methods: {
     startTimer() {
-      const duration = 60 * 2;
-      const display = document.querySelector('#timer-span');
-      let timer = duration;
-      let minutes, seconds;
+      const duration = 60 * 2
+      const display = document.querySelector('#timer-span')
+      let timer = duration
+      let minutes, seconds
       setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds;
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10)
+        minutes = minutes < 10 ? '0' + minutes : minutes
+        seconds = seconds < 10 ? '0' + seconds : seconds
+        display.textContent = minutes + ':' + seconds
         if (--timer < 0) {
-          timer = duration;
+          timer = duration
         }
-      }, 1000);
-    }
+      }, 1000)
+    },
   },
   mounted() {
-    this.startTimer() // Calls the method before page loads
-  }
-
+    this.startTimer() // Chama a função depois que a página é carregada
+  },
 }
 </script>
 
@@ -126,7 +144,6 @@ body {
 .enviar {
   margin: 0 5px;
   background-color: rgb(0, 137, 9);
-
 }
 
 .bttns {
@@ -172,7 +189,7 @@ body {
   background-color: #007bff;
 }
 
-.seta:hover{
+.seta:hover {
   background-color: #0766cc;
 }
 
