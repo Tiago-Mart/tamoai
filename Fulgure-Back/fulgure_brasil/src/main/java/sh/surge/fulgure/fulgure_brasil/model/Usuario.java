@@ -18,7 +18,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int vidas;
+    private int vidas, pontos;
     private String nome, email, senha;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -63,6 +63,14 @@ public class Usuario {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
     }
 
     public void setEmail(String email) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <itemNav></itemNav>
+    <itemNav :pontos="usuario.pontos"></itemNav>
     <itemProgress></itemProgress>
     <b-button-toolbar
       key-nav
@@ -22,12 +22,20 @@
         {{ questao.comando }}
       </b-card-text>
       <b-form-radio-group id="grupo1">
-        <b-form-radio
-          v-for="alternativa in questao.alternativas"
-          :key="alternativa"
-          class="alternativas"
-        >
-          {{ alternativa }}
+        <b-form-radio class="alternativas" name="alternativas">
+          {{ questao.alternativas[0] }}
+        </b-form-radio>
+        <b-form-radio class="alternativas" name="alternativas">
+          {{ questao.alternativas[1] }}
+        </b-form-radio>
+        <b-form-radio class="alternativas" name="alternativas">
+          {{ questao.alternativas[2] }}
+        </b-form-radio>
+        <b-form-radio class="alternativas" name="alternativas">
+          {{ questao.alternativas[3] }}
+        </b-form-radio>
+        <b-form-radio class="alternativas" name="alternativas">
+          {{ questao.alternativas[4] }}
         </b-form-radio>
       </b-form-radio-group>
     </b-card>
@@ -37,13 +45,16 @@
           <b-button class="left btn seta box-btn">&lsaquo;</b-button>
         </NuxtLink>
         <itemDica :textoDica="questao.dica"></itemDica>
-        <b-button class="enviar btn box-btn" @click="validarResposta">Enviar</b-button>
+        <b-button class="enviar btn box-btn" @click="modal">Enviar</b-button>
         <itemPular></itemPular>
         <NuxtLink v-bind:to="`/questao/${questao.id + 1}`"
           ><b-button class="right btn seta box-btn"
             >&rsaquo;</b-button
           ></NuxtLink
         >
+        <itemCuriosidade
+          :textoCuriosidade="questao.curiosidade"
+        ></itemCuriosidade>
       </b-button-toolbar>
     </b-card>
     <itemFooter></itemFooter>
@@ -56,9 +67,17 @@ import itemFooter from '~/components/itemFooter.vue'
 import itemProgress from '~/components/itemProgress.vue'
 import itemDica from '~/components/itemDica.vue'
 import itemPular from '~/components/itemPular.vue'
+import itemCuriosidade from '~/components/itemCuriosidade.vue'
 
 export default {
-  components: { itemNav, itemFooter, itemProgress, itemDica, itemPular },
+  components: {
+    itemNav,
+    itemFooter,
+    itemProgress,
+    itemDica,
+    itemPular,
+    itemCuriosidade,
+  },
   auth: false,
   async asyncData({ $axios, route }) {
     const idQuestao = route.params.questao
@@ -73,17 +92,19 @@ export default {
 
   methods: {
     async setVidas() {
+      const url = '/questao/' + (this.questao.id + 1)
       await this.$axios.$put('/usuario/' + this.usuario.nome, {
         vidas: this.usuario.vidas - 1,
       })
-      window.location.href = '/questao/2'
+      window.location.href = url
     },
     startTimer() {
-      const tempo = 10
+      const tempo = 120
       const duration = tempo
       const display = document.querySelector('#timer-span')
       let timer = duration
       let minutes, seconds
+      const a = this.setVidas
       setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10)
@@ -91,26 +112,28 @@ export default {
         seconds = seconds < 10 ? '0' + seconds : seconds
         display.textContent = minutes + ':' + seconds
         if (--timer < 0) {
-          // setVidas()
+          a()
         }
       }, 1000)
     },
-    validarResposta() {
-      const alternativas = document.getElementsByClassName("alternativas")
-      // let res = ''
-      for (let i = 0; i < alternativas.length; i++) {
-        if (alternativas[i].checked) {
-          alert(alternativas[i].innerHTML)
-          break
-        }
-      }
-      // alert(res)
-      // if (res === this.questao.resposta) {
-      //   alert('correto')
-      // } else {
-      //   alert('incorreto')
-      // }
+    modal() {
+      this.$bvModal.show('modal-3')
     },
+    // validarResposta() {
+    //   const alternativas = document.getElementsByName("alternativas")
+    //   // let res = ''
+    //   for (let i = 0; i < alternativas.length; i++) {
+    //     if (alternativas[i].checked) {
+    //       alert(true)
+    //     }
+    //   }
+    //   // alert(res)
+    //   // if (res === this.questao.resposta) {
+    //   //   alert('correto')
+    //   // } else {
+    //   //   alert('incorreto')
+    //   // }
+    // },
   },
   // Chama a função depois que a página é carregada
   mounted() {

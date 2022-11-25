@@ -13,7 +13,7 @@ public class Questao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String comando, curiosidade, dica, resposta;
+    private String comando, curiosidade, dica, resposta, areaConhecimento;
     private int pontuacao;
     private ArrayList alternativas = new ArrayList();
 
@@ -64,6 +64,14 @@ public class Questao {
 
     public String getComando() {
         return comando;
+    }
+
+    public String getAreaConhecimento() {
+        return areaConhecimento;
+    }
+
+    public void setAreaConhecimento(String areaConhecimento) {
+        this.areaConhecimento = areaConhecimento;
     }
 
     public void setComando(String comando) {

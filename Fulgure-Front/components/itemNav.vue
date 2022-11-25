@@ -18,8 +18,7 @@
             <template #button-content>
               <em><img src="~/static/selo.png" id="icon"/></em>
             </template>
-            <b-dropdown-item href="#">Acertos: 28</b-dropdown-item>
-            <b-dropdown-item href="#">Erros: 28</b-dropdown-item>
+            <b-dropdown-item href="#">Pontos: {{ pontos }}</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -28,7 +27,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: ["pontos"]
+}
 </script>
 
 <style>
