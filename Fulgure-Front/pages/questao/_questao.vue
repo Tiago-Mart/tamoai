@@ -11,11 +11,9 @@
         ><img src="~/static/relogio.png" /><span id="timer-span"></span>
       </b-button>
       <b-button class="right box-btn" variant="danger"
-        ><img
-          src="~/static/coracao.png"
-          width="20px"
-          height="20px"
-        />3</b-button
+        ><img src="~/static/coracao.png" width="20px" height="20px" />{{
+          usuario.vidas
+        }}</b-button
       >
     </b-button-toolbar>
     <b-card class="mb-2 box">
@@ -39,7 +37,7 @@
           <b-button class="left btn seta box-btn">&lsaquo;</b-button>
         </NuxtLink>
         <itemDica :textoDica="questao.dica"></itemDica>
-        <b-button class="enviar btn box-btn">Enviar</b-button>
+        <b-button class="enviar btn box-btn" @click="validarResposta">Enviar</b-button>
         <itemPular></itemPular>
         <NuxtLink v-bind:to="`/questao/${questao.id + 1}`"
           ><b-button class="right btn seta box-btn"
@@ -66,12 +64,23 @@ export default {
     const idQuestao = route.params.questao
     const resposta = await $axios.get('/questao/' + idQuestao)
     const questao = resposta.data
-    return { questao }
+
+    const response = await $axios.get('/usuario/me')
+    const usuario = response.data
+
+    return { questao, usuario }
   },
 
   methods: {
+    async setVidas() {
+      await this.$axios.$put('/usuario/' + this.usuario.nome, {
+        vidas: this.usuario.vidas - 1,
+      })
+      window.location.href = '/questao/2'
+    },
     startTimer() {
-      const duration = 60 * 2
+      const tempo = 10
+      const duration = tempo
       const display = document.querySelector('#timer-span')
       let timer = duration
       let minutes, seconds
@@ -82,22 +91,30 @@ export default {
         seconds = seconds < 10 ? '0' + seconds : seconds
         display.textContent = minutes + ':' + seconds
         if (--timer < 0) {
-          timer = duration
+          // setVidas()
         }
       }, 1000)
     },
-
-    hideAlternativa(){
-      const alternativa = document.getElementByClassName("alternativas")
-      if (alternativa.value == questao.id){
-        alternativa.style.display = none;
+    validarResposta() {
+      const alternativas = document.getElementsByClassName("alternativas")
+      // let res = ''
+      for (let i = 0; i < alternativas.length; i++) {
+        if (alternativas[i].checked) {
+          alert(alternativas[i].innerHTML)
+          break
+        }
       }
-    }
+      // alert(res)
+      // if (res === this.questao.resposta) {
+      //   alert('correto')
+      // } else {
+      //   alert('incorreto')
+      // }
+    },
   },
   // Chama a função depois que a página é carregada
   mounted() {
-    this.startTimer() 
-    this.hideAlternativa()
+    this.startTimer()
   },
 }
 </script>

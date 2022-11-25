@@ -23,7 +23,7 @@ public class QuestaoController {
     QuestaoRepository questaoRepository;
 
     @GetMapping("/questao")
-    public List<Questao> recuperaQuestoes(){
+    public List<Questao> recuperaQuestoes() {
         return (List<Questao>) questaoRepository.findAll();
     }
 
@@ -33,12 +33,12 @@ public class QuestaoController {
     }
 
     @PostMapping("/questao")
-    public void adicionaQuestao(@RequestBody Questao novaQuestao){
+    public void adicionaQuestao(@RequestBody Questao novaQuestao) {
         questaoRepository.save(novaQuestao);
     }
 
-    @DeleteMapping("/questao/{id}") 
-    public void deletaUsuario(@PathVariable("id") Long id){
+    @DeleteMapping("/questao/{id}")
+    public void deletaUsuario(@PathVariable("id") Long id) {
         questaoRepository.deleteById(id);
     }
 
