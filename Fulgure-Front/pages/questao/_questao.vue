@@ -45,7 +45,7 @@
           <b-button class="left btn seta box-btn">&lsaquo;</b-button>
         </NuxtLink>
         <itemDica :textoDica="questao.dica"></itemDica>
-        <b-button class="enviar btn box-btn" @click="modal">Enviar</b-button>
+        <b-button class="enviar btn box-btn" @click="validarResposta">Enviar</b-button>
         <itemPular></itemPular>
         <NuxtLink v-bind:to="`/questao/${questao.id + 1}`"
           ><b-button class="right btn seta box-btn"
@@ -119,20 +119,21 @@ export default {
     modal() {
       this.$bvModal.show('modal-3')
     },
+    // VALIDAR RESPOSTA E COMPUTAR PONTUAÇÃO E COLOCAR CURIOSIDADE DPS DE VALIDAÇÃO
     // validarResposta() {
     //   const alternativas = document.getElementsByName("alternativas")
     //   // let res = ''
     //   for (let i = 0; i < alternativas.length; i++) {
-    //     if (alternativas[i].checked) {
+    //     if (alternativas[i].checked === true) {
     //       alert(true)
     //     }
     //   }
-    //   // alert(res)
-    //   // if (res === this.questao.resposta) {
-    //   //   alert('correto')
-    //   // } else {
-    //   //   alert('incorreto')
-    //   // }
+      // alert(res)
+      // if (res === this.questao.resposta) {
+      //   alert('correto')
+      // } else {
+      //   alert('incorreto')
+      // }
     // },
   },
   // Chama a função depois que a página é carregada
