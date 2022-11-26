@@ -1,43 +1,39 @@
 <template>
   <div>
     <itemNav :pontos="usuario.pontos"></itemNav>
-    <itemProgress></itemProgress>
-    <b-button-toolbar
-      key-nav
-      aria-label="Toolbar with button groups"
-      class="toolbar-top"
-    >
-      <b-button class="left box-btn" id="timer"
-        ><img src="~/static/relogio.png" /><span id="timer-span"></span>
+    <div>
+        <b-progress :value="questao.id" :max="max" :animated="true" :show-value="true" class="mb-3"></b-progress>
+    </div>
+    <b-button-toolbar key-nav aria-label="Toolbar with button groups" class="toolbar-top">
+      <b-button class="left box-btn" id="timer"><img src="~/static/relogio.png" /><span id="timer-span"></span>
       </b-button>
-      <b-button class="right box-btn" variant="danger"
-        ><img src="~/static/coracao.png" width="20px" height="20px" />{{
+      <b-button class="right box-btn" variant="danger"><img src="~/static/coracao.png" width="20px" height="20px" />{{
           usuario.vidas
-        }}</b-button
-      >
+      }}</b-button>
     </b-button-toolbar>
     <b-card class="mb-2 box">
       <b-card-title> Questão {{ questao.id }}</b-card-title>
       <b-card-text>
         {{ questao.comando }}
       </b-card-text>
-      <b-form-radio-group id="grupo1">
-        <b-form-radio class="alternativas" name="alternativas">
+      <b-form-radio-group id="grupo1" v-model="selected">
+        <b-form-radio value="a" class="alternativas" name="alternativas">
           {{ questao.alternativas[0] }}
         </b-form-radio>
-        <b-form-radio class="alternativas" name="alternativas">
+        <b-form-radio value="b" class="alternativas" name="alternativas">
           {{ questao.alternativas[1] }}
         </b-form-radio>
-        <b-form-radio class="alternativas" name="alternativas">
+        <b-form-radio value="c" class="alternativas" name="alternativas">
           {{ questao.alternativas[2] }}
         </b-form-radio>
-        <b-form-radio class="alternativas" name="alternativas">
+        <b-form-radio value="d" class="alternativas" name="alternativas">
           {{ questao.alternativas[3] }}
         </b-form-radio>
-        <b-form-radio class="alternativas" name="alternativas">
+        <b-form-radio value="e" class="alternativas" name="alternativas">
           {{ questao.alternativas[4] }}
         </b-form-radio>
       </b-form-radio-group>
+      <p>{{ selected }}</p>
     </b-card>
     <b-card class="bttns bottom">
       <b-button-toolbar key-nav aria-label="Toolbar with button groups">
@@ -47,14 +43,10 @@
         <itemDica :textoDica="questao.dica"></itemDica>
         <b-button class="enviar btn box-btn" @click="validarResposta">Enviar</b-button>
         <itemPular></itemPular>
-        <NuxtLink v-bind:to="`/questao/${questao.id + 1}`"
-          ><b-button class="right btn seta box-btn"
-            >&rsaquo;</b-button
-          ></NuxtLink
-        >
-        <itemCuriosidade
-          :textoCuriosidade="questao.curiosidade"
-        ></itemCuriosidade>
+        <NuxtLink v-bind:to="`/questao/${questao.id + 1}`">
+          <b-button class="right btn seta box-btn">&rsaquo;</b-button>
+        </NuxtLink>
+        <itemCuriosidade :textoCuriosidade="questao.curiosidade"></itemCuriosidade>
       </b-button-toolbar>
     </b-card>
     <itemFooter></itemFooter>
@@ -62,9 +54,9 @@
 </template>
 
 <script>
+
 import itemNav from '~/components/itemNav.vue'
 import itemFooter from '~/components/itemFooter.vue'
-import itemProgress from '~/components/itemProgress.vue'
 import itemDica from '~/components/itemDica.vue'
 import itemPular from '~/components/itemPular.vue'
 import itemCuriosidade from '~/components/itemCuriosidade.vue'
@@ -73,21 +65,28 @@ export default {
   components: {
     itemNav,
     itemFooter,
-    itemProgress,
     itemDica,
     itemPular,
     itemCuriosidade,
   },
   auth: false,
+
   async asyncData({ $axios, route }) {
     const idQuestao = route.params.questao
     const resposta = await $axios.get('/questao/' + idQuestao)
     const questao = resposta.data
-
     const response = await $axios.get('/usuario/me')
     const usuario = response.data
+    const questoes = await $axios.get('/questao/')
+    const max = questoes.data.length
 
-    return { questao, usuario }
+    return { questao, usuario, max}
+  },
+
+  data() {
+    return {
+      selected: '',
+    }
   },
 
   methods: {
@@ -97,6 +96,12 @@ export default {
         vidas: this.usuario.vidas - 1,
       })
       window.location.href = url
+    },
+
+    async setPontuacao() {
+      await this.$axios.$put('/usuario/' + this.usuario.nome, {
+        pontos: this.usuario.pontos + this.questao.pontuacao,
+      })
     },
     startTimer() {
       const tempo = 120
@@ -116,25 +121,20 @@ export default {
         }
       }, 1000)
     },
-    modal() {
-      this.$bvModal.show('modal-3')
-    },
     // VALIDAR RESPOSTA E COMPUTAR PONTUAÇÃO E COLOCAR CURIOSIDADE DPS DE VALIDAÇÃO
-    // validarResposta() {
-    //   const alternativas = document.getElementsByName("alternativas")
-    //   // let res = ''
-    //   for (let i = 0; i < alternativas.length; i++) {
-    //     if (alternativas[i].checked === true) {
-    //       alert(true)
-    //     }
-    //   }
-      // alert(res)
-      // if (res === this.questao.resposta) {
-      //   alert('correto')
-      // } else {
-      //   alert('incorreto')
-      // }
-    // },
+    validarResposta() {
+      const res = this.selected
+      const a = this.setPontuacao
+      const url = '/questao/' + (this.questao.id + 1)
+      this.$bvModal.show('modal-3')
+      if (res === this.questao.resposta) {
+        alert('Resposta correta!')
+        a()
+      } else {        
+        alert('Resposta incorreta!')
+      }
+      setInterval(function (){window.location.href = url},5000)
+    },
   },
   // Chama a função depois que a página é carregada
   mounted() {

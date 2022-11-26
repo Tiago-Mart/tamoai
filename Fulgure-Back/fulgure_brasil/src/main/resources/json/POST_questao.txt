@@ -4,19 +4,14 @@
   "dica": "A cozinha tradicional do norte do Brasil é rica em mandioca e peixe, herança dos costumes indígenas.",
   "resposta": "Indígena",
   "pontuacao": 5,
-  "tempo": 120,
-  "areaConhecimento": [
-    {
-      "descricao": "História"
-    }
-  ],
-  "alternativas": {
-    "a": "Europeia",
-    "b": "Norte-americana",
-    "c": "Asiática",
-    "d": "Australiana",
-    "e": "Indígena"
-  }
+  "areaConhecimento": "História",
+  "alternativas": [
+    "Europeia",
+    "Norte-americana",
+    "Asiática",
+    "Australiana",
+    "Indígena"
+    ]
 }
 
 {

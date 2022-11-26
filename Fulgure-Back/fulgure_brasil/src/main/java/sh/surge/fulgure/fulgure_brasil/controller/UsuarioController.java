@@ -66,6 +66,7 @@ public class UsuarioController {
         Usuario updateUsuario = usuarioRepository.findByNome(nome).get(0);
 
         updateUsuario.setVidas(usuario.getVidas());
+        updateUsuario.setPontos(usuario.getPontos());
 
         usuarioRepository.save(updateUsuario);
 

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -20,6 +21,11 @@ public class Usuario {
 
     private int vidas, pontos;
     private String nome, email, senha;
+
+    @PrePersist
+    void defaultValue() {
+        vidas = 5;
+    }
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usuario")
