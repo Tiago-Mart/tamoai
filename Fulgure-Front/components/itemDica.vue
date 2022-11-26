@@ -4,14 +4,14 @@
                 height="20px" /><span>Dica</span>
         </b-button>
         <b-modal ok-only id="modal-1" title="Dica">
-            <p class="my-4">Dica</p>
+            <p class="my-4">{{ textoDica }}</p>
         </b-modal>
     </div>
 </template>
 
 <script>
 export default {
-
+props: ["textoDica"]
 }
 </script>
 

@@ -1,39 +1,52 @@
 <template>
   <div>
-    <itemNav></itemNav>
-    <itemProgress></itemProgress>
+    <itemNav :pontos="usuario.pontos"></itemNav>
+    <div>
+        <b-progress :value="questao.id" :max="max" :animated="true" :show-value="true" class="mb-3"></b-progress>
+    </div>
     <b-button-toolbar key-nav aria-label="Toolbar with button groups" class="toolbar-top">
       <b-button class="left box-btn" id="timer"><img src="~/static/relogio.png" /><span id="timer-span"></span>
       </b-button>
-      <b-button class="right box-btn" variant="danger"><img src="~/static/coracao.png" width="20px" height="20px" />3</b-button>
+      <b-button class="right box-btn" variant="danger"><img src="~/static/coracao.png" width="20px" height="20px" />{{
+          usuario.vidas
+      }}</b-button>
     </b-button-toolbar>
     <b-card class="mb-2 box">
-      <b-card-title> Questão 1</b-card-title>
+      <b-card-title> Questão {{ questao.id }}</b-card-title>
       <b-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet
-        tellus vitae neque dignissim accumsan id sed ipsum. Nulla non tempor
-        purus. Phasellus pulvinar elit ante, ullamcorper scelerisque nisi
-        faucibus in. Maecenas pretium malesuada ligula non sodales. Suspendisse
-        potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-        Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Nunc ex enim, euismod nec cursus ac, mattis at purus.
-        Aliquam libero erat, ultricies in lacus a, fermentum pharetra orci.
+        {{ questao.comando }}
       </b-card-text>
-      <b-form-radio-group id="grupo1">
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
-        <b-form-radio class="alternativas"> Lorem ipsum </b-form-radio>
+      <b-form-radio-group id="grupo1" v-model="selected">
+        <b-form-radio value="a" class="alternativas" name="alternativas">
+          {{ questao.alternativas[0] }}
+        </b-form-radio>
+        <b-form-radio value="b" class="alternativas" name="alternativas">
+          {{ questao.alternativas[1] }}
+        </b-form-radio>
+        <b-form-radio value="c" class="alternativas" name="alternativas">
+          {{ questao.alternativas[2] }}
+        </b-form-radio>
+        <b-form-radio value="d" class="alternativas" name="alternativas">
+          {{ questao.alternativas[3] }}
+        </b-form-radio>
+        <b-form-radio value="e" class="alternativas" name="alternativas">
+          {{ questao.alternativas[4] }}
+        </b-form-radio>
       </b-form-radio-group>
+      <p>{{ selected }}</p>
     </b-card>
     <b-card class="bttns bottom">
       <b-button-toolbar key-nav aria-label="Toolbar with button groups">
-        <b-button class="left btn seta box-btn">&lsaquo;</b-button>
-        <itemDica></itemDica>
-        <b-button v-on:click="timerStart" class="enviar btn box-btn">Enviar</b-button>
+        <NuxtLink v-bind:to="`/questao/${questao.id - 1}`">
+          <b-button class="left btn seta box-btn">&lsaquo;</b-button>
+        </NuxtLink>
+        <itemDica :textoDica="questao.dica"></itemDica>
+        <b-button class="enviar btn box-btn" @click="validarResposta">Enviar</b-button>
         <itemPular></itemPular>
-        <b-button class="right btn seta box-btn">&rsaquo;</b-button>
+        <NuxtLink v-bind:to="`/questao/${questao.id + 1}`">
+          <b-button class="right btn seta box-btn">&rsaquo;</b-button>
+        </NuxtLink>
+        <itemCuriosidade :textoCuriosidade="questao.curiosidade"></itemCuriosidade>
       </b-button-toolbar>
     </b-card>
     <itemFooter></itemFooter>
@@ -41,37 +54,92 @@
 </template>
 
 <script>
+
 import itemNav from '~/components/itemNav.vue'
 import itemFooter from '~/components/itemFooter.vue'
-import itemProgress from '~/components/itemProgress.vue'
 import itemDica from '~/components/itemDica.vue'
 import itemPular from '~/components/itemPular.vue'
+import itemCuriosidade from '~/components/itemCuriosidade.vue'
 
 export default {
-  components: { itemNav, itemFooter, itemProgress, itemDica, itemPular },
+  components: {
+    itemNav,
+    itemFooter,
+    itemDica,
+    itemPular,
+    itemCuriosidade,
+  },
+  auth: false,
 
-  methods: {
-    startTimer() {
-      const duration = 60 * 2;
-      const display = document.querySelector('#timer-span');
-      let timer = duration;
-      let minutes, seconds;
-      setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds;
-        if (--timer < 0) {
-          timer = duration;
-        }
-      }, 1000);
+  async asyncData({ $axios, route }) {
+    const idQuestao = route.params.questao
+    const resposta = await $axios.get('/questao/' + idQuestao)
+    const questao = resposta.data
+    const response = await $axios.get('/usuario/me')
+    const usuario = response.data
+    const questoes = await $axios.get('/questao/')
+    const max = questoes.data.length
+
+    return { questao, usuario, max}
+  },
+
+  data() {
+    return {
+      selected: '',
     }
   },
-  mounted() {
-    this.startTimer() // Calls the method before page loads
-  }
 
+  methods: {
+    async setVidas() {
+      const url = '/questao/' + (this.questao.id + 1)
+      await this.$axios.$put('/usuario/' + this.usuario.nome, {
+        vidas: this.usuario.vidas - 1,
+      })
+      window.location.href = url
+    },
+
+    async setPontuacao() {
+      await this.$axios.$put('/usuario/' + this.usuario.nome, {
+        pontos: this.usuario.pontos + this.questao.pontuacao,
+      })
+    },
+    startTimer() {
+      const tempo = 120
+      const duration = tempo
+      const display = document.querySelector('#timer-span')
+      let timer = duration
+      let minutes, seconds
+      const a = this.setVidas
+      setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10)
+        minutes = minutes < 10 ? '0' + minutes : minutes
+        seconds = seconds < 10 ? '0' + seconds : seconds
+        display.textContent = minutes + ':' + seconds
+        if (--timer < 0) {
+          a()
+        }
+      }, 1000)
+    },
+    // VALIDAR RESPOSTA E COMPUTAR PONTUAÇÃO E COLOCAR CURIOSIDADE DPS DE VALIDAÇÃO
+    validarResposta() {
+      const res = this.selected
+      const a = this.setPontuacao
+      const url = '/questao/' + (this.questao.id + 1)
+      this.$bvModal.show('modal-3')
+      if (res === this.questao.resposta) {
+        alert('Resposta correta!')
+        a()
+      } else {        
+        alert('Resposta incorreta!')
+      }
+      setInterval(function (){window.location.href = url},5000)
+    },
+  },
+  // Chama a função depois que a página é carregada
+  mounted() {
+    this.startTimer()
+  },
 }
 </script>
 
@@ -126,7 +194,6 @@ body {
 .enviar {
   margin: 0 5px;
   background-color: rgb(0, 137, 9);
-
 }
 
 .bttns {
@@ -172,7 +239,7 @@ body {
   background-color: #007bff;
 }
 
-.seta:hover{
+.seta:hover {
   background-color: #0766cc;
 }
 

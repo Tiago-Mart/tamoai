@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import sh.surge.fulgure.fulgure_brasil.model.Questao;
 import sh.surge.fulgure.fulgure_brasil.repository.QuestaoRepository;
 
-//ACESSAR https://www.guj.com.br/t/query-no-spring-boot-com-jpa-passando-paramentro-no-controller/404718/2
 @CrossOrigin
 @RestController
 public class QuestaoController {
@@ -23,7 +22,7 @@ public class QuestaoController {
     QuestaoRepository questaoRepository;
 
     @GetMapping("/questao")
-    public List<Questao> recuperaQuestoes(){
+    public List<Questao> recuperaQuestoes() {
         return (List<Questao>) questaoRepository.findAll();
     }
 
@@ -33,12 +32,12 @@ public class QuestaoController {
     }
 
     @PostMapping("/questao")
-    public void adicionaQuestao(@RequestBody Questao novaQuestao){
+    public void adicionaQuestao(@RequestBody Questao novaQuestao) {
         questaoRepository.save(novaQuestao);
     }
 
-    @DeleteMapping("/questao/{id}") 
-    public void deletaUsuario(@PathVariable("id") Long id){
+    @DeleteMapping("/questao/{id}")
+    public void deletaUsuario(@PathVariable("id") Long id) {
         questaoRepository.deleteById(id);
     }
 

@@ -28,9 +28,7 @@
               bulk of the card's content.
             </b-card-text>
 
-            <b-button href="/questao/facil"  class="bttn"
-              >Jogar</b-button
-            >
+            <b-button href="/questao/1" class="bttn">Jogar</b-button>
           </b-card>
           <b-card title="Médio" class="medio mb-2">
             <b-card-text>
@@ -38,18 +36,14 @@
               bulk of the card's content.
             </b-card-text>
 
-            <b-button href="/questao/medio" class="bttn"
-              >Jogar</b-button
-            >
+            <b-button href="/questao/6" class="bttn">Jogar</b-button>
           </b-card>
           <b-card title="Difícil" class="dificil mb-2">
             <b-card-text>
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </b-card-text>
-            <b-button href="/questao/dificil" class="bttn"
-              >Jogar</b-button
-            >
+            <b-button href="/questao/11" class="bttn">Jogar</b-button>
           </b-card>
         </b-col>
       </b-row>
@@ -64,7 +58,9 @@ import itemCarrossel from '~/components/itemCarrossel.vue'
 import itemFooter from '~/components/itemFooter.vue'
 
 export default {
-  components: { itemNav, itemFooter, itemCarrossel }
+  components: { itemNav, itemFooter, itemCarrossel },
+  // Define que essa página só será acessível se o login tiver sido realizado
+  middleware: ['auth'],
 }
 </script>
 
@@ -76,6 +72,11 @@ export default {
   height: auto;
   box-sizing: border-box;
   text-align: justify;
+}
+
+.mb-2 {
+  height: auto !important;
+  width: auto;
 }
 
 body {
